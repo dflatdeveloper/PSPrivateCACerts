@@ -1,0 +1,26 @@
+[ req ]
+prompt				= no
+default_bits        = 2048 
+default_keyfile     = My-You-Need-Create-This-Cert-File.pem
+distinguished_name  = req_distinguished_name
+emailAddress        = cert_admin@example.com
+req_extensions          = v3_req
+x509_extensions         = v3_ca
+
+[req_distinguished_name]
+C = US 
+
+O =  Example
+0.OU= default
+
+CN= Example CA
+
+[v3_req]
+basicConstraints = CA:TRUE
+keyUsage			   = digitalSignature, nonRepudiation, keyEncipherment,dataEncipherment,keyAgreement, keyCertSign, cRLSign
+
+[v3_ca]
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+subjectAltName         = email:cert_admin@example.com
+issuerAltName          = issuer:copy

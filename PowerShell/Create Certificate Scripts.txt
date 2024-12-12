@@ -1,0 +1,81 @@
+REM Key file_mode 3x DES
+openssl genrsa `
+	-des3 `
+	-out server.example.com.key `
+	2048
+	
+	
+REM OR... *******************************
+
+REM Key file_mode RSA
+openssl genrsa `
+	-out server.example.com.key `
+	2048
+	
+REM **************************************************
+
+REM Cert Request
+openssl req `
+	-key server.example.com.key `
+	-new `
+	-out server.example.com.csr `
+	-config server.example.com.ext `
+	-extensions v3_req `
+	-subj "/CN=server.example.com"
+
+REM ***************************************
+
+REM Certificate with internal CA signature
+openssl x509 `
+	-req `
+	-CA ..\Root_CA.crt `
+	-CAkey ..\Root_CA.key `
+	-in server.example.com.csr `
+	-out server.example.com.crt `
+	-days 365 `
+	-CAcreateserial `
+	-extfile server.example.com.ext `
+	-extensions v3_req
+	
+REM ***************************************	
+	
+REM Create private Key
+openssl pkcs12 `
+	-export `
+	-out server.example.com.pfx `
+	-in server.example.com.crt `
+	-inkey server.example.com.key `
+	-in ..\Root_CA.crt
+	-passin pass:"password123!@#"
+
+REM **************************************
+
+REM Create PEM from PFX
+openssl pkcs12 `
+	-info `
+	-in server.example.com.pfx `
+	-out server.example.com.pem `
+	-nodes
+
+REM *************************************
+
+REM Export PEM DER
+openssl x509 `
+	-inform pem `
+	-in server.example.com.pem `
+	-outform der `
+	-out server.example.com.cer
+
+REM ************************************
+REM ************************************
+REM create rootCA certificate
+openssl req `
+	-x509 `
+	-sha256 `
+	-days 3653 `
+	-newkey `
+	rsa:2048 `
+	-keyout Root_CA.key `
+	-out Root_CA.crt `
+	-config Root_CA.ext `
+	-extensions v3_req

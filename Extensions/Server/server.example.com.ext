@@ -1,0 +1,38 @@
+[req]
+prompt                 = no
+days                   = 365
+distinguished_name     = req_distinguished_name
+req_extensions         = v3_req
+
+
+[req_distinguished_name]
+C = [Press Enter to Continue]
+C_default 			   = US
+C_min 				   = 2
+C_max				   = 2
+
+O = [0]
+O_default    		   = Justin Time Concept Pathfinders
+
+OU = [OU]
+OU_default 			   = Crayons for Chow
+
+ST = [ST]
+ST_default 			   = GA
+
+L = [L]
+L_default 			   = Canton, GA		
+
+CN = [CN]
+CN_default = server.example.com
+
+[v3_req]
+basicConstraints       = CA:false
+keyUsage			   = digitalSignature, nonRepudiation, keyEncipherment,dataEncipherment,keyAgreement, keyCertSign, cRLSign
+extendedKeyUsage       = serverAuth,codeSigning,timeStamping
+subjectAltName         = @altName
+
+[altName]
+DNS.0 = localhost
+DNS.1 = server
+DNS.2 = server.example.com
