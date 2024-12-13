@@ -12,16 +12,16 @@ C_min 				   = 2
 C_max				   = 2
 
 O = [0]
-O_default    		   = Justin Time Concept Pathfinders
+O_default    		   = Example
 
 OU = [OU]
-OU_default 			   = Crayons for Chow
+OU_default 			   = Example
 
 ST = [ST]
-ST_default 			   = GA
+ST_default 			   = NY
 
 L = [L]
-L_default 			   = Canton, GA		
+L_default 			   = Albany, NY
 
 CN = [CN]
 CN_default = server.example.com
