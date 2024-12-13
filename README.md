@@ -2,7 +2,9 @@
 Function to create a root CA and child certificates for SSL Cert
 
 > [!NOTE] 
-This can be done using LetEncrypt but using a custom CA is less hastle trying to get a cert to a machine that isn't using a client application to install a cert
+This can be done using LetEncrypt but using a custom CA is less hastle trying to get a cert to a machine that isn't using the letsencrypt process to install a cert.
+This doesn't have to run on the same machine as it is deploying to
+
 ## Copy and Modify extension files
 ### 1) Extensions\RootCA\Root_CA.ext
 	
