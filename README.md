@@ -55,23 +55,23 @@ C_min 				   = 2
 C_max				   = 2
 
 O = [0]
-O_default    		   = Justin Time Concept Pathfinders
+O_default    		   = Example LLC
 
 OU = [OU]
-OU_default 			   = Crayons for Chow
+OU_default 			   = EXAMPLE
 
 ST = [ST]
-ST_default 			   = GA
+ST_default 			   = NY
 
 L = [L]
-L_default 			   = Canton, GA		
+L_default 			   = Albany, NY		
 
 CN = [CN]
 CN_default = server.example.com
 
 [v3_req]
 basicConstraints       = CA:false
-keyUsage			   = digitalSignature, nonRepudiation, keyEncipherment,dataEncipherment,keyAgreement, keyCertSign, cRLSign
+keyUsage	       = digitalSignature, nonRepudiation, keyEncipherment,dataEncipherment,keyAgreement, keyCertSign, cRLSign
 extendedKeyUsage       = serverAuth,codeSigning,timeStamping
 subjectAltName         = @altName
 
@@ -83,12 +83,12 @@ DNS.2 = server.example.com
 
 ## Create a New CA
 ```
-New-RootCA -RootCAPath "N:\test\certs" -RootCAName "Root_CA" -ValidDays 3653 -KeyPassword "password123!@#"
+New-RootCA -RootCAPath "<path to create the cert>" -RootCAName "<your CA cert name>" -ValidDays <days as int> -KeyPassword "<some password>"
 ```
 
 ## Create certificates for Server
 ```
-New-CertificateSet -RootCAPath "N:\test\certs" -RootCAName "Root_CA" -CertificatePath "N:\test\certs\server" -CertificateName "server.example.com" -ValidDays 3653 -KeyPassword "password123!@#"
+New-CertificateSet -RootCAPath "<path to root certificates>" -RootCAName "<name of the root cert>" -CertificatePath "<path to create the certs>" -CertificateName "FQDN or short name" -ValidDays <days as int> -KeyPassword "<some password>"
 ```
 
 ## Import new CA to the local machine
